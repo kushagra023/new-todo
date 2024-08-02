@@ -1,1 +1,2 @@
-django_prometheus
+django==3.2
+django-prometheus
