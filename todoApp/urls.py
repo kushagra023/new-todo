@@ -3,7 +3,6 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings, views
-from django_prometheus import exports  # Import Prometheus export
 from .views import MetricsView  # Import MetricsView
 
 urlpatterns = [
