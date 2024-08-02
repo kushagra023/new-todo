@@ -1,8 +1,11 @@
 from django.http import HttpResponse
 from django_prometheus.exports import ExportToPrometheus
+from django.views import View
 
-class MetricsView(HttpResponse):
+class MetricsView(View):
     content_type = 'text/plain; charset=utf-8'
-    def __init__(self, *args, **kwargs):
-        content = ExportToPrometheus()  # Use the Prometheus exporter
-        super().__init__(content, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        # Generate Prometheus metrics content
+        content = ExportToPrometheus().get_metrics()
+        return HttpResponse(content, content_type=self.content_type)
